@@ -37,6 +37,9 @@ http ":8080/graphRAG?searchPhrase=magic"
 
 http ":8080/vectorRAG?searchPhrase=encouragement"
 http ":8080/graphRAG?searchPhrase=encouragement"
+
+http ":8080/vectorRAG?searchPhrase=dragons and magic"
+http ":8080/graphRAG?searchPhrase=dragons and magic"
 ```
 
 *Note:* The above commands are using the https://httpie.io/[
@@ -46,7 +49,7 @@ HTTPie^] command line tool, but you can use `curl` similarly.
 
 PDF versions of accompanying presentations are published to SpeakerDeck.
 
-* _Coming soon!_
+* https://speakerdeck.com/jmhreif/rag-accuracy-and-explainability-in-genai-applications[Arc of AI (March 2025)^]
 
 == Resources
 * Site: https://dev.neo4j.com/aura-java[Neo4j Aura^]
