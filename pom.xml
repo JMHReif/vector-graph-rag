@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.3</version>
+		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jmhreif</groupId>
@@ -28,7 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
-		<spring-ai.version>1.0.0-M6</spring-ai.version>
+		<spring-ai.version>1.0.0-M7</spring-ai.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -37,15 +37,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-neo4j-store-spring-boot-starter</artifactId>
+			<artifactId>spring-ai-starter-vector-store-neo4j</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+			<artifactId>spring-ai-starter-model-openai</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-pinecone-store-spring-boot-starter</artifactId>
+			<artifactId>spring-ai-starter-vector-store-pinecone</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

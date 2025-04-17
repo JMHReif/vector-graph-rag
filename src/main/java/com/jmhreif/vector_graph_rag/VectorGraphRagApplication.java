@@ -19,8 +19,6 @@ public class VectorGraphRagApplication {
 	public PineconeVectorStore pineconeVectorStore(EmbeddingModel embeddingModel) {
 		return PineconeVectorStore.builder(embeddingModel)
 				.apiKey(System.getenv("SPRING_AI_VECTORSTORE_PINECONE_API_KEY"))
-				.projectId(System.getenv("SPRING_AI_VECTORSTORE_PINECONE_PROJECT_ID"))
-				.environment(System.getenv("SPRING_AI_VECTORSTORE_PINECONE_ENVIRONMENT"))
 				.indexName(System.getenv("SPRING_AI_VECTORSTORE_PINECONE_INDEX_NAME"))
 				.build();
 	}

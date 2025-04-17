@@ -32,14 +32,14 @@ You can test both the `/vectorRAG` and `/graphRAG` endpoints. Here are some idea
 http ":8080/vectorRAG?searchPhrase=dragons"
 http ":8080/graphRAG?searchPhrase=dragons"
 
-http ":8080/vectorRAG?searchPhrase=magic"
-http ":8080/graphRAG?searchPhrase=magic"
-
 http ":8080/vectorRAG?searchPhrase=encouragement"
 http ":8080/graphRAG?searchPhrase=encouragement"
 
-http ":8080/vectorRAG?searchPhrase=dragons and magic"
-http ":8080/graphRAG?searchPhrase=dragons and magic"
+http ":8080/vectorRAG?searchPhrase=could you recommend books that are high tech"
+http ":8080/graphRAG?searchPhrase=could you recommend books that are high tech"
+
+http ":8080/vectorRAG?searchPhrase=please tell me about books that have dragons and magic"
+http ":8080/graphRAG?searchPhrase=please tell me about books that have dragons and magic"
 ```
 
 *Note:* The above commands are using the https://httpie.io/[
@@ -49,6 +49,7 @@ HTTPie^] command line tool, but you can use `curl` similarly.
 
 PDF versions of accompanying presentations are published to SpeakerDeck.
 
+* https://speakerdeck.com/jmhreif/vector-and-graphrag-accuracy-and-explainability-in-genai-applications[Graph Database Atlanta meetup (April 2025)^]
 * https://speakerdeck.com/jmhreif/rag-accuracy-and-explainability-in-genai-applications[Arc of AI (March 2025)^]
 
 == Resources
