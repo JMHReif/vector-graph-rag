@@ -26,20 +26,24 @@ To run the application, you will need the following:
 
 Once that's set up and data is loaded, execute the application with `./mvnw spring-boot:run`.
 
-You can test both the `/vectorRAG` and `/graphRAG` endpoints. Here are some ideas for example search phrases:
+You can test both the `/vectorRAG`, `/graphRAG`, and `/comboRAG` endpoints. Here are some ideas for example search phrases:
 
 ```
 http ":8080/vectorRAG?searchPhrase=dragons"
 http ":8080/graphRAG?searchPhrase=dragons"
+http ":8080/comboRAG?searchPhrase=dragons"
 
 http ":8080/vectorRAG?searchPhrase=encouragement"
 http ":8080/graphRAG?searchPhrase=encouragement"
+http ":8080/comboRAG?searchPhrase=encouragement"
 
 http ":8080/vectorRAG?searchPhrase=could you recommend books that are high tech"
 http ":8080/graphRAG?searchPhrase=could you recommend books that are high tech"
+http ":8080/comboRAG?searchPhrase=could you recommend books that are high tech"
 
 http ":8080/vectorRAG?searchPhrase=please tell me about books that have dragons and magic"
 http ":8080/graphRAG?searchPhrase=please tell me about books that have dragons and magic"
+http ":8080/comboRAG?searchPhrase=please tell me about books that have dragons and magic"
 ```
 
 *Note:* The above commands are using the https://httpie.io/[

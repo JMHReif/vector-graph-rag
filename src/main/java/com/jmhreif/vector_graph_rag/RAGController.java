@@ -42,23 +42,22 @@ public class RAGController {
     //Vector RAG - embeddings are on Review text, so missing some context
     @GetMapping("/vectorRAG")
     public String vSimilarityResponse(@RequestParam String searchPhrase) {
-        List<Document> results = pineconeVectorStore.doSimilaritySearch(SearchRequest.builder().query(searchPhrase).topK(5).build());
+        List<Document> results = pineconeVectorStore.similaritySearch(searchPhrase);
 //        System.out.println("--- Results ---");
 //        System.out.println(results);
 
-        var template = new PromptTemplate(prompt,
-                Map.of("context", results.stream().map(Document::toString).collect(Collectors.joining("\n")),
-                        "searchPhrase", searchPhrase));
+        var template = new PromptTemplate(prompt).create(Map.of("context", results.stream().map(Document::toString).collect(Collectors.joining("\n")),
+                "searchPhrase", searchPhrase));
         System.out.println("----- VectorRAG PROMPT -----");
-        System.out.println(template.render());
+        System.out.println(template);
 
-        return chatClient.prompt(template.create()).call().content();
+        return chatClient.prompt(template).call().content();
     }
 
     //Graph RAG - vector search + retrieval query for related context
     @GetMapping("/graphRAG")
     public String gSimilarityResponse(@RequestParam String searchPhrase) {
-        List<Document> results = neo4jVectorStore.doSimilaritySearch(SearchRequest.builder().query(searchPhrase).topK(5).build());
+        List<Document> results = neo4jVectorStore.similaritySearch(searchPhrase);
 //        System.out.println("--- Results ---");
 //        System.out.println(results);
 
@@ -66,12 +65,37 @@ public class RAGController {
 //        System.out.println("--- Book list ---");
 //        System.out.println(bookList);
 
-        var template = new PromptTemplate(prompt,
-                Map.of("context", bookList.stream().map(Book::toString).collect(Collectors.joining("\n")),
-                        "searchPhrase", searchPhrase));
+        var template = new PromptTemplate(prompt).create(Map.of("context", bookList.stream().map(Book::toString).collect(Collectors.joining("\n")),
+                "searchPhrase", searchPhrase));
         System.out.println("----- GraphRAG PROMPT -----");
-        System.out.println(template.render());
+        System.out.println(template);
 
-        return chatClient.prompt(template.create()).call().content();
+        return chatClient.prompt(template).call().content();
+    }
+
+    // Graph RAG - vector search in Pinecone + retrieval query in Neo4j
+    @GetMapping("/comboRAG")
+    public String comboRAGResponse(@RequestParam String searchPhrase) {
+        List<Document> results = pineconeVectorStore.similaritySearch(searchPhrase);
+        System.out.println("--- Results ---");
+        System.out.println(results);
+
+        List<String> reviewIds = results.stream()
+                .map(document -> document.getMetadata().get("review_id").toString())
+                .toList();
+//        System.out.println("--- reviewIds ---");
+//        System.out.println(reviewIds);
+
+        List<Book> bookList = bookRepository.findBooks(reviewIds);
+//        System.out.println("--- Book list ---");
+//        System.out.println(bookList);
+
+        var template = new PromptTemplate(prompt).create(Map.of(
+                "context", bookList.stream().map(Book::toString).collect(Collectors.joining("\n")),
+                "searchPhrase", searchPhrase));
+        System.out.println("----- GraphRAG PROMPT -----");
+        System.out.println(template);
+
+        return chatClient.prompt(template).call().content();
     }
 }
