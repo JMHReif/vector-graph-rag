@@ -29,21 +29,25 @@ Once that's set up and data is loaded, execute the application with `./mvnw spri
 You can test both the `/vectorRAG`, `/graphRAG`, and `/comboRAG` endpoints. Here are some ideas for example search phrases:
 
 ```
-http ":8080/vectorRAG?searchPhrase=dragons"
-http ":8080/graphRAG?searchPhrase=dragons"
-http ":8080/comboRAG?searchPhrase=dragons"
+http ":8080/vectorRAG?searchPhrase= and magic"
+http ":8080/graphRAG?searchPhrase=dragons and magic"
+http ":8080/comboRAG?searchPhrase=dragons and magic"
 
 http ":8080/vectorRAG?searchPhrase=encouragement"
 http ":8080/graphRAG?searchPhrase=encouragement"
 http ":8080/comboRAG?searchPhrase=encouragement"
 
-http ":8080/vectorRAG?searchPhrase=could you recommend books that are high tech"
-http ":8080/graphRAG?searchPhrase=could you recommend books that are high tech"
-http ":8080/comboRAG?searchPhrase=could you recommend books that are high tech"
+http ":8080/vectorRAG?searchPhrase=I'm dealing with stress and am looking for a relaxing and easy read for a mountain vacation"
+http ":8080/graphRAG?searchPhrase=I'm dealing with stress and am looking for a relaxing and easy read for a mountain vacation"
+http ":8080/comboRAG?searchPhrase=I'm dealing with stress and am looking for a relaxing and easy read for a mountain vacation"
 
-http ":8080/vectorRAG?searchPhrase=please tell me about books that have dragons and magic"
-http ":8080/graphRAG?searchPhrase=please tell me about books that have dragons and magic"
-http ":8080/comboRAG?searchPhrase=please tell me about books that have dragons and magic"
+http ":8080/vectorRAG?searchPhrase=I want to challenge my mind and would like to read something about technology"
+http ":8080/graphRAG?searchPhrase=I want to challenge my mind and would like to read something about technology"
+http ":8080/comboRAG?searchPhrase=I want to challenge my mind and would like to read something about technology"
+
+http ":8080/vectorRAG?searchPhrase=I'd like to read something about personal growth and small town living"
+http ":8080/graphRAG?searchPhrase=I'd like to read something about personal growth and small town living"
+http ":8080/comboRAG?searchPhrase=I'd like to read something about personal growth and small town living"
 ```
 
 *Note:* The above commands are using the https://httpie.io/[
@@ -53,6 +57,7 @@ HTTPie^] command line tool, but you can use `curl` similarly.
 
 PDF versions of accompanying presentations are published to SpeakerDeck.
 
+* https://speakerdeck.com/jmhreif/rag-accuracy-and-explainability-in-genai-applications-0b5412ac-385b-4873-b86c-2334f22cc185[DevUp conference (August 2025)^]
 * https://speakerdeck.com/jmhreif/vector-and-graphrag-accuracy-and-explainability-in-genai-applications[Graph Database Atlanta meetup (April 2025)^]
 * https://speakerdeck.com/jmhreif/rag-accuracy-and-explainability-in-genai-applications[Arc of AI (March 2025)^]
 

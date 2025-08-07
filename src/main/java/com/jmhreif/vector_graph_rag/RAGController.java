@@ -3,7 +3,6 @@ package com.jmhreif.vector_graph_rag;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
-import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.neo4j.Neo4jVectorStore;
 import org.springframework.ai.vectorstore.pinecone.PineconeVectorStore;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,8 +42,6 @@ public class RAGController {
     @GetMapping("/vectorRAG")
     public String vSimilarityResponse(@RequestParam String searchPhrase) {
         List<Document> results = pineconeVectorStore.similaritySearch(searchPhrase);
-//        System.out.println("--- Results ---");
-//        System.out.println(results);
 
         var template = new PromptTemplate(prompt).create(Map.of("context", results.stream().map(Document::toString).collect(Collectors.joining("\n")),
                 "searchPhrase", searchPhrase));
@@ -58,12 +55,8 @@ public class RAGController {
     @GetMapping("/graphRAG")
     public String gSimilarityResponse(@RequestParam String searchPhrase) {
         List<Document> results = neo4jVectorStore.similaritySearch(searchPhrase);
-//        System.out.println("--- Results ---");
-//        System.out.println(results);
 
         List<Book> bookList = bookRepository.findBooks(results.stream().map(Document::getId).toList());
-//        System.out.println("--- Book list ---");
-//        System.out.println(bookList);
 
         var template = new PromptTemplate(prompt).create(Map.of("context", bookList.stream().map(Book::toString).collect(Collectors.joining("\n")),
                 "searchPhrase", searchPhrase));
@@ -83,12 +76,8 @@ public class RAGController {
         List<String> reviewIds = results.stream()
                 .map(document -> document.getMetadata().get("review_id").toString())
                 .toList();
-//        System.out.println("--- reviewIds ---");
-//        System.out.println(reviewIds);
 
         List<Book> bookList = bookRepository.findBooks(reviewIds);
-//        System.out.println("--- Book list ---");
-//        System.out.println(bookList);
 
         var template = new PromptTemplate(prompt).create(Map.of(
                 "context", bookList.stream().map(Book::toString).collect(Collectors.joining("\n")),
